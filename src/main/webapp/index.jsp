@@ -49,23 +49,97 @@ String upString = name.toUpperCase();
     </div>
   </div>
 </nav>
-<a class="nav-link btn btn-secondary" style="color: #fff; width: 200px; margin-top: 5px; position: absolute; right: 20px;" href="additem.jsp">+ Add Items</a>
+
+				<div style="display: flex;">
+				<form action="" method="post">
+				<div class="input-group" style="margin-top: 15px; margin-left: 600px;">
+				  <div class="form-outline">
+				    <input type="search" id="form1" placeholder="Search" name="sea" class="form-control" />
+				  </div>
+				    <Button class="btn btn-outline-success" name="search" type="submit" >Search</Button>
+				</div>
+				</form>
+			<a class="nav-link btn btn-secondary" style="color: #fff; width: 200px; margin-top: 5px; 
+					position: absolute; right: 20px;" href="additem.jsp">+ Add Items</a>
+				
+				</div>
+
 <div class="container overflow-hidden" style="margin-top: 50px;">
   <div class="row gy-5">
 <%
- while(resultset.next()) {
-            	String id = resultset.getString("Id");
-				String item = resultset.getString(2);
-				String brand = resultset.getString(3);
-				String condition = resultset.getString(4);
-				String price = resultset.getString(5);
-				String quantity = resultset.getString(6);
-				String date = resultset.getString(7);
-				String image = resultset.getString(9); 
+if (request.getParameter("search") != null) { 
+	String sea = request.getParameter("sea");
+	String query = "SELECT * FROM itemdb.itemtb WHERE Model like '%"+sea+"%' ORDER BY Id DESC ";
+	PreparedStatement preparedStatements = connection.prepareStatement(query);
+	ResultSet resultsets = preparedStatements.executeQuery();
+	
+				if(resultsets.next() == false){
+					%>
+					<div class="col-6">
+					   <h2>No Match Found!</h2>
+					</div>
+				<%	
+				  resultsets.close();
+				 }
+				
+		else{
+				String q = "SELECT * FROM itemdb.itemtb WHERE Model like '%"+sea+"%' ORDER BY Id DESC ";
+				PreparedStatement ps = connection.prepareStatement(q);
+				ResultSet rs = ps.executeQuery();
+	 			while(rs.next()) {
+            	String idd = rs.getString("Id");
+            	String itemd = rs.getString(2);
+				String brandd = rs.getString(3);
+				String conditiond = rs.getString(4);
+				String priced = rs.getString(5);
+				String quantityd = rs.getString(6);
+				String dated = rs.getString(7);
+				String imaged = rs.getString(9); 
+ %>
+
+					<div class="col-6">
+				        <div class="p-3 border bg-dark" style="margin: 10px;">
+							<div class="container overflow-hidden">
+							  <div class="row gx-5">
+							    <div class="col">
+							     <div class="p-3 border bg-light">
+				                      <img style="width: 200px; height: 200px;" alt="" src="<%= imaged %>" />
+				                </div>
+							    </div>
+							    <div class="col" style="margin-left: 10px;">
+							      <div class="p-3 border bg-light" style="margin-top: 10px;">
+									  <span>Posted Date : <%= dated %></span><br>
+									  <span>Model : <%= itemd %></span><br>
+									  <span>Price :<%= priced %></span>
+								  </div>
+								  <div class="row gy-5" style="margin-top: 5px;">
+									 <a class="nav-link btn btn-primary" style="margin-top: 10px; color: #fff;" href="detail.jsp?id=<%= idd %>" id="btn1" >Details</a>
+									 <a class="nav-link btn btn-secondary" style="margin-top: 10px; color: #fff;" href="view.jsp?id=<%= idd%>" id="btn1" >Edit</a>
+								  </div>
+							    </div>
+							  </div>
+							</div>
+				      </div>
+				    </div>
+
+    <%   
+        }
+          }
+			} 
+				else {
+					while(resultset.next()) {
+		            	String id = resultset.getString("Id");
+						String item = resultset.getString(2);
+						String brand = resultset.getString(3);
+						String condition = resultset.getString(4);
+						String price = resultset.getString(5);
+						String quantity = resultset.getString(6);
+						String date = resultset.getString(7);
+						String image = resultset.getString(9); 
+					
 				
 			%>
-	 		
-		  
+	 		 
 
     <div class="col-6">
       <div class="p-3 border bg-dark" style="margin: 10px;">
@@ -93,8 +167,10 @@ String upString = name.toUpperCase();
     </div>
 
   
-   <%     
+   <% 
+		}            
 	  }
+			
 	%>
 	</div>
 </div>
