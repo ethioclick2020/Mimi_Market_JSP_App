@@ -1,5 +1,6 @@
 @charset "ISO-8859-1";
-.logform{
+
+.logform {
 	width: 600px;
 	height: 220px;
 	position: absolute;
@@ -8,48 +9,57 @@
 	margin: 20px;
 	background-color: #8f9194;
 }
-.logdiv{
+
+.logdiv {
 	margin: 15px;
 	margin-top: 30px;
 }
-.loga{
+
+.loga {
 	margin-left: 160px;
 }
-.detdiv{
+
+.detdiv {
 	height: 800px;
 	position: absolute;
 	top: 100px;
 	left: 300px;
 	margin: 20px;
 }
-.ldiv{
+
+.ldiv {
 	margin: 15px;
 	margin-top: 30px;
 }
-.view{
+
+.view {
 	margin: 0;
 }
-.label1{
+
+.label1 {
 	display: inline-block;
 	width: 200px;
 	text-align: right;
 }
-.label2{
+
+.label2 {
 	margin-left: 20px;
 	display: inline-block;
 	width: 200px;
 	text-align: left;
 	padding: 4px;
 }
-.profile{
+
+.profile {
 	height: 45px;
-    width: 45px;
-    background-color: #bbb;
+	width: 45px;
+	background-color: #bbb;
 	margin-right: 20px;
-	border-radius: 50%; 
+	border-radius: 50%;
 	align-content: center;
 }
-.proa{
+
+.proa {
 	text-align: center;
 	color: #e84b13;
 }

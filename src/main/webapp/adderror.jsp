@@ -11,9 +11,9 @@
 </head>
 <body>
 	<div align="center" style="margin-top: 300px;">
-		<span style="color: red;">Error : Something went Wrong! Try
-			Again Please </span><br> <br> <br> <a class="btn btn-primary"
-			href="signin.jsp">Back to Sign In</a>
+		<span style="color: red;">Error : Adding Item Failed! Try Again
+			Please </span><br> <br> <br> <a class="btn btn-primary"
+			href="index.jsp">Back to Sign In</a>
 	</div>
 </body>
 </html>
