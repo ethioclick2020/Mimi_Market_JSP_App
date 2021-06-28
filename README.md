@@ -3,7 +3,7 @@ JspItemShoping
 Shopping management system web app that allow us to add new Items, show list of items, when one selected from the list it  display the detail and can be edited. Using JSP, Servlet and JDBC for DB.
 
 Sign In Page
-
+<hr>
 ![signin](https://user-images.githubusercontent.com/80669589/123602872-c3a9c600-d7e8-11eb-9e9e-b128a7be8a98.PNG)
 
 Create Account for New User Sign Up Page
