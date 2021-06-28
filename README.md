@@ -1,4 +1,4 @@
-JspItemShoping - 
+JspItemShoping
 
 Shopping management system web app that allow us to add new Items, show list of items, when one selected from the list it  display the detail and can be edited. Using JSP, Servlet and JDBC for DB.
 
