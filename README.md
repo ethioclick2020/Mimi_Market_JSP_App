@@ -1,5 +1,6 @@
 JspItemShoping - 
-this is item(mobile) listing, view detail and edit information web app.
+
+Shopping management system web app that allow us to add new Items, show list of items, when one selected from the list it  display the detail and can be edited. Using JSP, Servlet and JDBC for DB.
 
 Sign In Page
 
