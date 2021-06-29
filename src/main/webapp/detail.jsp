@@ -16,17 +16,15 @@
 		href="index.jsp"> Back to List</a>
 
 	<%
-	HttpSession hs = request.getSession();
-	String item = (String) hs.getAttribute("items");
-
-	String i = request.getParameter("id");
+	String id = request.getParameter("id");
 	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
-	String sql = "SELECT * FROM itemdb.itemtb WHERE Id = '" + i + "'";
+	String sql = "SELECT * FROM itemdb.itemtb WHERE Id = '" + id + "'";
 	PreparedStatement preparedStatement = connection.prepareStatement(sql);
 	ResultSet resultset = preparedStatement.executeQuery();
+	%>
 
+	<%
 	while (resultset.next()) {
-		String id = resultset.getString("Id");
 		String items = resultset.getString(2);
 		String brand = resultset.getString(3);
 		String condition = resultset.getString(4);
@@ -68,10 +66,7 @@
 	</div>
 	<%
 	}
-
-	{
 	%>
-
 
 </body>
 </html>

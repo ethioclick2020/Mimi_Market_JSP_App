@@ -49,34 +49,22 @@ public class UserSignin extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String name = request.getParameter("name");
-		String pass = request.getParameter("pass");
+		String userName = request.getParameter("username");
+		String password = request.getParameter("password");
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		User user = new User();
+		user.setUserName(userName);
+		user.setPassword(password);
 
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
+		Authentication authentication = new Authentication();
 
-			String sql = "SELECT * FROM itemdb.usertb WHERE Name='" + name + "' && Password = md5('" + pass + "')";
+		HttpSession httpSession = request.getSession();
+		httpSession.setAttribute("user", userName);
 
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-			ResultSet resultset = preparedStatement.executeQuery();
-
-			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute("user", name);
-
-			if (resultset.next()) {
-				response.sendRedirect("index.jsp");
-			} else {
-				response.sendRedirect("error.jsp");
-			}
-
-		}
-
-		catch (SQLException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (authentication.signIn(user) == true) {
+			response.sendRedirect("index.jsp");
+		} else {
+			response.sendRedirect("error.jsp");
 		}
 	}
 

@@ -77,7 +77,6 @@ public class AddItem extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		} else {
 			response.sendRedirect("adderror.jsp");
-
 		}
 
 	}

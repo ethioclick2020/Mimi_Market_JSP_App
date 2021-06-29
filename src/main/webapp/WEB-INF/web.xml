@@ -19,7 +19,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AddItem</servlet-name>
-		<url-pattern>/forward</url-pattern>
+		<url-pattern>/additem</url-pattern>
 	</servlet-mapping>
 
 	<!-- User Sign Up -->
@@ -43,4 +43,5 @@
 		<servlet-name>UserSignin</servlet-name>
 		<url-pattern>/signin</url-pattern>
 	</servlet-mapping>
+
 </web-app>

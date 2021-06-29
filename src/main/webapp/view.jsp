@@ -10,63 +10,55 @@
 </head>
 <body>
 	<%
-	HttpSession hs = request.getSession();
-	String item = (String) hs.getAttribute("items");
-
-	String i = request.getParameter("id");
-	String name = request.getParameter("item");
+	String id = request.getParameter("id");
+	String modelName = request.getParameter("model");
 	String brand = request.getParameter("brand");
 	String condition = request.getParameter("condition");
-	String prices = request.getParameter("price");
-	String quan = request.getParameter("quan");
-	String date = request.getParameter("date");
-	String descr = request.getParameter("desc");
-	String img = null;
+	String price = request.getParameter("price");
+	String quantity = request.getParameter("quantity");
+	String postDate = request.getParameter("postdate");
+	String description = request.getParameter("description");
+	String image = null;
 
 	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
-	String sql = "SELECT * FROM itemdb.itemtb WHERE Id = '" + i + "'";
+	String sql = "SELECT * FROM itemdb.itemtb WHERE Id = '" + id + "'";
 	PreparedStatement preparedStatement = connection.prepareStatement(sql);
 	ResultSet resultset = preparedStatement.executeQuery();
 
 	if (request.getParameter("update") != null) {
 
-		HttpSession iii = request.getSession();
-		iii.setAttribute("items", item);
 		response.sendRedirect("index.jsp");
 
 		while (resultset.next()) {
-			String imgg = resultset.getString(9);
-			if (request.getParameter("img").equals("")) {
-		img = imgg;
+			String image1 = resultset.getString(9);
+			if (request.getParameter("image").equals("")) {
+		image = image1;
 		//response.getWriter().append(img);
 			} else {
-		img = request.getParameter("img");
-		//response.getWriter().append(img);
+		image = request.getParameter("image");
 			}
 		}
 
 		String query = "UPDATE itemtb SET Model = ?, Brand = ?, Conditions = ?, Price = ?, Quantity = ?, "
-		+ "Date = ?, Description = ?, Image = ? WHERE Id = '" + i + "'";
+		+ "Date = ?, Description = ?, Image = ? WHERE Id = '" + id + "'";
 		PreparedStatement preparedStatements = connection.prepareStatement(query);
-		preparedStatements.setString(1, name);
+		preparedStatements.setString(1, modelName);
 		preparedStatements.setString(2, brand);
 		preparedStatements.setString(3, condition);
-		preparedStatements.setString(4, prices);
-		preparedStatements.setString(5, quan);
-		preparedStatements.setString(6, date);
-		preparedStatements.setString(7, descr);
-		preparedStatements.setString(8, img);
+		preparedStatements.setString(4, price);
+		preparedStatements.setString(5, quantity);
+		preparedStatements.setString(6, postDate);
+		preparedStatements.setString(7, description);
+		preparedStatements.setString(8, image);
 
 		preparedStatements.executeUpdate();
 
 	}
 	if (request.getParameter("delete") != null) {
 
-		HttpSession iii = request.getSession();
-		iii.setAttribute("items", item);
 		response.sendRedirect("index.jsp");
 
-		String query = "DELETE FROM itemtb WHERE Id = '" + i + "'";
+		String query = "DELETE FROM itemtb WHERE Id = '" + id + "'";
 		PreparedStatement preparedStatements = connection.prepareStatement(query);
 
 		preparedStatements.executeUpdate();
@@ -82,11 +74,11 @@
 		String items = resultset.getString(2);
 		String brands = resultset.getString(3);
 		String conditions = resultset.getString(4);
-		String price = resultset.getString(5);
-		String quantity = resultset.getString(6);
-		String dates = resultset.getString(7);
-		String desc = resultset.getString(8);
-		String imgg = resultset.getString(9);
+		String prices = resultset.getString(5);
+		String quantitys = resultset.getString(6);
+		String postDates = resultset.getString(7);
+		String descriptions = resultset.getString(8);
+		String image1 = resultset.getString(9);
 	%>
 
 	<h3 class="a" align="center">Edit Item's Detail Information</h3>
@@ -102,16 +94,16 @@
 									<div class="col">
 										<div class="p-3 border bg-light" style="margin-top: 10px">
 											<img style="width: 360px; height: 380px;" alt=""
-												src="<%=imgg%>" /><br> Change Image : <input
-												type="file" class="form-control" id="inputEmail3" name="img"
-												placeholder="F:\PROGRAMS\Eclipse JAVA\JspItemShoping\src\main\webapp\images">
+												src="<%=image1%>" /><br> Change Image : <input
+												type="file" class="form-control" id="inputEmail3"
+												name="image">
 										</div>
 									</div>
 									<div class="col" style="margin-left: 10px;">
 										<div class="p-3 border bg-light" style="margin-top: 10px;">
 
 											<label class="label1">Model</label><input type="text"
-												name="item" class="label2" value="<%=items%>"><br>
+												name="model" class="label2" value="<%=items%>"><br>
 											<br> <label class="label1">Brand</label> <select
 												class="label2" name="brand"
 												style="padding: 4px; width: 200px;">
@@ -126,16 +118,15 @@
 												<option value="New">New</option>
 												<option value="Used">Used</option>
 											</select><br> <br> <label class="label1">Item Price</label><input
-												type="text" name="price" class="label2" value="<%=price%>"><br>
+												type="text" name="price" class="label2" value="<%=prices%>"><br>
 											<br> <label class="label1">Item Quantity</label><input
-												type="number" name="quan" class="label2"
-												value="<%=quantity%>"><br> <br> <label
+												type="number" name="quantity" class="label2"
+												value="<%=quantitys%>"><br> <br> <label
 												class="label1">Posted On</label><input type="date"
-												name="date" class="label2" value="<%=dates%>"><br>
+												name="postdate" class="label2" value="<%=postDates%>"><br>
 											<br> <label class="label1">Description</label>
-											<textarea name="desc" class="form-control label2"
-												id="inputEmail3" name="description"
-												style="width: 400px; height: 100px"><%=desc%></textarea>
+											<textarea class="form-control label2" id="inputEmail3"
+												name="description" style="width: 400px; height: 100px"><%=descriptions%></textarea>
 											<br>
 											<div style="display: flex;">
 												<input class="nav-link btn btn-primary"

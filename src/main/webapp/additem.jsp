@@ -12,7 +12,7 @@
 	<a class="nav-link btn btn-secondary"
 		style="color: #fff; width: 200px; margin-top: 5px; position: absolute; right: 20px;"
 		href="index.jsp"> Back to List</a>
-	<form class="logform" action="forward" method="post"
+	<form class="logform" action="additem" method="post"
 		style="margin-top: 20px; top: 0; height: 630px;">
 		<h3 align="center">Add Items</h3>
 		<div class="logdiv">
