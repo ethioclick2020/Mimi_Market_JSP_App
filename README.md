@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+# Mimi_Market_JSP_App
+
 JspItemShoping
 
 Shopping management system web app that allow us to add new Items, show list of items, when one selected from the list it  display the detail and can be edited. Using JSP, Servlet and JDBC for DB.
@@ -35,5 +36,3 @@ Edit Item's Information
 ![edit](https://user-images.githubusercontent.com/80669589/123600938-a8d65200-d7e6-11eb-96b5-8e8c8f49a199.PNG)
 
 =======
-# Mimi_Market_JSP_App
->>>>>>> f4b9736be44ca93598ac8b3d8017311120ce37fd
