@@ -20,6 +20,7 @@ public class ItemInfo {
 	private String postDate;
 	private String description;
 	private String image;
+	private String itemSearch;
 
 	public String getModelName() {
 		return modelName;
@@ -84,5 +85,14 @@ public class ItemInfo {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public String getItemSearch() {
+		return itemSearch;
+	}
+
+	public void setItemSearch(String itemSearch) {
+		this.itemSearch = itemSearch;
+	}
+	
 
 }

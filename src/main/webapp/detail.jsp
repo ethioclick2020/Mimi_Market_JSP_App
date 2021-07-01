@@ -1,3 +1,5 @@
+<%@page import="com.shop.DAO"%>
+<%@page import="com.shop.ItemInfo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="java.util.* , java.sql.*, java.text.*"%>
@@ -16,23 +18,13 @@
 		href="index.jsp"> Back to List</a>
 
 	<%
+	HttpSession hs = request.getSession();
+	String name = (String) hs.getAttribute("user");
 	String id = request.getParameter("id");
-	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
-	String sql = "SELECT * FROM itemdb.itemtb WHERE Id = '" + id + "'";
-	PreparedStatement preparedStatement = connection.prepareStatement(sql);
-	ResultSet resultset = preparedStatement.executeQuery();
-	%>
-
-	<%
-	while (resultset.next()) {
-		String items = resultset.getString(2);
-		String brand = resultset.getString(3);
-		String condition = resultset.getString(4);
-		String price = resultset.getString(5);
-		String quantity = resultset.getString(6);
-		String date = resultset.getString(7);
-		String desc = resultset.getString(8);
-		String image = resultset.getString(9);
+	DAO dao = new DAO();
+	dao.itemDetail(id);
+	List<ItemInfo> itemsInfo = dao.itemDetail(id);
+	for (ItemInfo itemInfo : itemsInfo) {
 	%>
 
 	<div class="container overflow-hidden detdiv"
@@ -46,16 +38,16 @@
 							<div class="col">
 								<div class="p-3 border bg-light">
 									<img style="width: 180px; height: 180px;" alt=""
-										src="<%=image%>" />
+										src="<%=itemInfo.getImage()%>" />
 								</div>
 							</div>
 							<div class="col" style="margin-left: 10px;">
 								<div class="p-3 border bg-light" style="margin-top: 10px;">
-									<span>Posted Date : <%=date%></span><br> <span>Model
-										: <%=items%></span><br> <span>Brand : <%=brand%></span><br>
-									<span>Condition : <%=condition%></span><br> <span>Price
-										: <%=price%></span><br> <span>Quantity : <%=quantity%></span><br>
-									<span>Description : <%=desc%></span>
+									<span>Posted Date : <%=itemInfo.getPostDate()%></span><br> <span>Model
+										: <%=itemInfo.getModelName()%></span><br> <span>Brand : <%=itemInfo.getBrand()%></span><br>
+									<span>Condition : <%= itemInfo.getCondition()%></span><br> <span>Price
+										: <%=itemInfo.getPrice()%></span><br> <span>Quantity : <%=itemInfo.getQuantity()%></span><br>
+									<span>Description : <%=itemInfo.getDescription()%></span>
 								</div>
 							</div>
 						</div>

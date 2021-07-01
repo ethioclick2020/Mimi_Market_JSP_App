@@ -2,8 +2,6 @@ package com.shop;
 
 import java.io.IOException;
 
-import jakarta.servlet.Servlet;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,24 +9,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddItem
+ * Servlet implementation class EditItem
  */
-@WebServlet("/AddItem")
-public class AddItem extends HttpServlet {
+@WebServlet("/EditItem")
+public class EditItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public AddItem() {
+	public EditItem() {
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -38,7 +29,7 @@ public class AddItem extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Item Added");
+
 	}
 
 	/**
@@ -49,34 +40,43 @@ public class AddItem extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		DAO dao = new DAO();
+		ItemInfo itemInfo = new ItemInfo();
+
+		String id = request.getParameter("id");
 		String modelName = request.getParameter("model");
 		String brand = request.getParameter("brand");
 		String condition = request.getParameter("condition");
-		Double price = Double.parseDouble(request.getParameter("price"));
-		Integer quan = Integer.parseInt(request.getParameter("quan"));
-		String date = request.getParameter("date");
+		String itemPrice = request.getParameter("price");
+		String quantity = request.getParameter("quantity");
+		String postDate = request.getParameter("postdate");
 		String description = request.getParameter("description");
-		String image = request.getParameter("img");
+		String image = null;
 
-		ItemInfo itemInfo = new ItemInfo();
-		itemInfo.setModelName(modelName);
-		itemInfo.setBrand(brand);
-		itemInfo.setCondition(condition);
-		itemInfo.setPrice(price);
-		itemInfo.setQuantity(quan);
-		itemInfo.setPostDate(date);
-		itemInfo.setDescription(description);
-		itemInfo.setImage(image);
+		if (request.getParameter("update") != null) {
 
-		DAO dao = new DAO();
-		boolean itemAddded = dao.addItems(itemInfo);
+			itemInfo.setId(Integer.parseInt(id));
+			itemInfo.setModelName(modelName);
+			itemInfo.setBrand(brand);
+			itemInfo.setCondition(condition);
+			itemInfo.setPrice(Double.parseDouble(itemPrice));
+			itemInfo.setQuantity(Integer.parseInt(quantity));
+			itemInfo.setPostDate(postDate);
+			itemInfo.setDescription(description);
 
-		if (itemAddded) {
+			dao.updateItem(itemInfo);
+
 			response.sendRedirect("index.jsp");
-		} else {
-			response.sendRedirect("adderror.jsp");
 		}
 
+		if (request.getParameter("delete") != null) {
+
+			itemInfo.setId(Integer.parseInt(id));
+			dao.deleteItem(itemInfo);
+
+			response.sendRedirect("index.jsp");
+
+		}
 	}
 
 }

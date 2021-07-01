@@ -44,4 +44,15 @@
 		<url-pattern>/signin</url-pattern>
 	</servlet-mapping>
 
+	<!-- Item Edit -->
+	<servlet>
+		<servlet-name>EditItem</servlet-name>
+		<servlet-class>com.shop.EditItem</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EditItem</servlet-name>
+		<url-pattern>/edititem</url-pattern>
+	</servlet-mapping>
+
 </web-app>
