@@ -35,7 +35,7 @@
 								<div class="row gx-5">
 									<div class="col">
 										<div class="p-3 border bg-light" style="margin-top: 25px">
-											<img style="width: 460px; height: 460px;" alt=""
+											<img style="width: 360px; height: 440px;" alt=""
 												src="<%=itemInfo.getImage()%>" /><br>
 										</div>
 									</div>
