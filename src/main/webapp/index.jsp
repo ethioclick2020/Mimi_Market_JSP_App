@@ -15,9 +15,6 @@
 <body>
 	<%
 	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
-	String sql = "SELECT * FROM itemdb.itemtb ORDER BY Id DESC";
-	PreparedStatement preparedStatement = connection.prepareStatement(sql);
-	ResultSet resultset = preparedStatement.executeQuery();
 
 	DAO dao = new DAO();
 
@@ -61,7 +58,7 @@
 			<div class="input-group"
 				style="margin-top: 15px; margin-left: 600px;">
 				<div class="form-outline">
-					<input type="search" id="form1" placeholder="Search" name="sea"
+					<input type="search" id="form1" placeholder="Search" name="search"
 						class="form-control" />
 				</div>
 				<Button class="btn btn-outline-success" name="search" type="submit">Search</Button>
@@ -77,8 +74,8 @@
 		<div class="row gy-5">
 			<%
 			if (request.getParameter("search") != null) {
-				String sea = request.getParameter("sea");
-				String query = "SELECT * FROM itemdb.itemtb WHERE Model like '%" + sea + "%' ORDER BY Id DESC ";
+				String search = request.getParameter("search");
+				String query = "SELECT * FROM itemdb.itemtb WHERE Model like '%" + search + "%' ORDER BY Id DESC ";
 				PreparedStatement preparedStatements = connection.prepareStatement(query);
 				ResultSet resultsets = preparedStatements.executeQuery();
 
@@ -92,18 +89,18 @@
 			}
 
 			else {
-			String q = "SELECT * FROM itemdb.itemtb WHERE Model like '%" + sea + "%' ORDER BY Id DESC ";
+			String q = "SELECT * FROM itemdb.itemtb WHERE Model like '%" + search + "%' ORDER BY Id DESC ";
 			PreparedStatement ps = connection.prepareStatement(q);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				String idd = rs.getString("Id");
-				String itemd = rs.getString(2);
-				String brandd = rs.getString(3);
-				String conditiond = rs.getString(4);
-				String priced = rs.getString(5);
-				String quantityd = rs.getString(6);
-				String dated = rs.getString(7);
-				String imaged = rs.getString(9);
+				String id = rs.getString("Id");
+				String model = rs.getString(2);
+				String brand = rs.getString(3);
+				String condition = rs.getString(4);
+				String price = rs.getString(5);
+				String quantity = rs.getString(6);
+				String date = rs.getString(7);
+				String image = rs.getString(9);
 			%>
 
 			<div class="col-6">
@@ -113,21 +110,21 @@
 							<div class="col">
 								<div class="p-3 border bg-light">
 									<img style="width: 200px; height: 200px;" alt=""
-										src="<%=imaged%>" />
+										src="./images/<%=image%>" />
 								</div>
 							</div>
 							<div class="col" style="margin-left: 10px;">
 								<div class="p-3 border bg-light" style="margin-top: 10px;">
-									<span>Posted Date : <%=dated%></span><br> <span>Model
-										: <%=itemd%></span><br> <span>Price :<%=priced%></span>
+									<span>Posted Date : <%=date%></span><br> <span>Model
+										: <%=model%></span><br> <span>Price :<%=price%></span>
 								</div>
 								<div class="row gy-5" style="margin-top: 5px;">
 									<a class="nav-link btn btn-primary"
 										style="margin-top: 10px; color: #fff;"
-										href="detail.jsp?id=<%=idd%>" id="btn1">Details</a> <a
+										href="detail.jsp?id=<%=id%>" id="btn1">Details</a> <a
 										class="nav-link btn btn-secondary"
 										style="margin-top: 10px; color: #fff;"
-										href="view.jsp?id=<%=idd%>" id="btn1">Edit</a>
+										href="view.jsp?id=<%=id%>" id="btn1">Edit</a>
 								</div>
 							</div>
 						</div>
@@ -150,7 +147,7 @@
 							<div class="col">
 								<div class="p-3 border bg-light">
 									<img style="width: 200px; height: 200px;" alt=""
-										src="<%=itemInfo.getImage()%>" />
+										src="./images/<%=itemInfo.getImage()%>" />
 								</div>
 							</div>
 							<div class="col" style="margin-left: 10px;">

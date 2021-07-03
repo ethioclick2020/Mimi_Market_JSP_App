@@ -36,18 +36,19 @@
 					<div class="container overflow-hidden">
 						<div class="row gx-5">
 							<div class="col">
-								<div class="p-3 border bg-light">
-									<img style="width: 180px; height: 180px;" alt=""
-										src="<%=itemInfo.getImage()%>" />
+								<div class="p-3 border bg-light" style="margin-top: 15px">
+									<img style="width: 180px; height: 180px; margin-top: 10px;"
+										alt="" src="./images/<%=itemInfo.getImage()%>" />
 								</div>
 							</div>
 							<div class="col" style="margin-left: 10px;">
 								<div class="p-3 border bg-light" style="margin-top: 10px;">
-									<span>Posted Date : <%=itemInfo.getPostDate()%></span><br> <span>Model
-										: <%=itemInfo.getModelName()%></span><br> <span>Brand : <%=itemInfo.getBrand()%></span><br>
-									<span>Condition : <%= itemInfo.getCondition()%></span><br> <span>Price
-										: <%=itemInfo.getPrice()%></span><br> <span>Quantity : <%=itemInfo.getQuantity()%></span><br>
-									<span>Description : <%=itemInfo.getDescription()%></span>
+									<span>Posted Date : <%=itemInfo.getPostDate()%></span><br>
+									<span>Model : <%=itemInfo.getModelName()%></span><br> <span>Brand
+										: <%=itemInfo.getBrand()%></span><br> <span>Condition : <%=itemInfo.getCondition()%></span><br>
+									<span>Price : <%=itemInfo.getPrice()%></span><br> <span>Quantity
+										: <%=itemInfo.getQuantity()%></span><br> <span>Description
+										: <%=itemInfo.getDescription()%></span>
 								</div>
 							</div>
 						</div>

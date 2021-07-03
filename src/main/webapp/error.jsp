@@ -11,8 +11,9 @@
 </head>
 <body>
 	<div align="center" style="margin-top: 300px;">
-		<span style="color: red;">Error : Something went Wrong! Try
-			Again Please </span><br> <br> <br> <a class="btn btn-primary"
+		<span style="color: red;">Error : Something went Wrong! Invalid
+			User Name or Passowrd! <br> Try Again Please
+		</span><br> <br> <br> <a class="btn btn-primary"
 			href="signin.jsp">Back to Sign In</a>
 	</div>
 </body>

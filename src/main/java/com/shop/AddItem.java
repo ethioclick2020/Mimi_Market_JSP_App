@@ -58,6 +58,10 @@ public class AddItem extends HttpServlet {
 		String description = request.getParameter("description");
 		String image = request.getParameter("img");
 
+		int x = image.lastIndexOf('\\');
+		String path = image.substring(0, (x + 1));
+		String imageName = image.substring(x + 1);
+
 		ItemInfo itemInfo = new ItemInfo();
 		itemInfo.setModelName(modelName);
 		itemInfo.setBrand(brand);
@@ -66,7 +70,7 @@ public class AddItem extends HttpServlet {
 		itemInfo.setQuantity(quan);
 		itemInfo.setPostDate(date);
 		itemInfo.setDescription(description);
-		itemInfo.setImage(image);
+		itemInfo.setImage(imageName);
 
 		DAO dao = new DAO();
 		boolean itemAddded = dao.addItems(itemInfo);

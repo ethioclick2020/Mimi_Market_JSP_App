@@ -39,7 +39,7 @@ public class Authentication {
 	}
 
 	public boolean signIn(User user) {
-		
+
 		boolean status = false;
 
 		try {
@@ -53,7 +53,7 @@ public class Authentication {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
 			ResultSet resultset = preparedStatement.executeQuery();
-			status = resultset.next();	
+			status = resultset.next();
 
 		}
 

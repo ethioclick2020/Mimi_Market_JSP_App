@@ -93,6 +93,5 @@ public class ItemInfo {
 	public void setItemSearch(String itemSearch) {
 		this.itemSearch = itemSearch;
 	}
-	
 
 }

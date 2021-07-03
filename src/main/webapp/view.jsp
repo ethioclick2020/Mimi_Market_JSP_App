@@ -36,7 +36,7 @@
 									<div class="col">
 										<div class="p-3 border bg-light" style="margin-top: 25px">
 											<img style="width: 360px; height: 440px;" alt=""
-												src="<%=itemInfo.getImage()%>" /><br>
+												src="./images/<%=itemInfo.getImage()%>" /><br>
 										</div>
 									</div>
 									<div class="col" style="margin-left: 10px;">
@@ -46,7 +46,7 @@
 												name="model" class="label2"
 												value="<%=itemInfo.getModelName()%>"><br> <br>
 											<label class="label1">Brand</label> <select class="label2"
-												name="brand" style="padding: 4px; width: 200px;">
+												name="brand" style="padding: 4px; width: 190px;">
 												<option value="<%=itemInfo.getBrand()%>"><%=itemInfo.getBrand()%></option>
 												<option value="Apple">Apple</option>
 												<option value="Huawei">Huawei</option>
