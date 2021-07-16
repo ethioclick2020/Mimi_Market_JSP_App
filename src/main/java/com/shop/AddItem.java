@@ -1,16 +1,11 @@
 package com.shop;
 
 import java.io.IOException;
-
-<<<<<<< HEAD
 import com.hibernate.DAO;
 import com.hibernate.ElectronicsType;
 import com.hibernate.ItemInfo;
 import com.hibernate.User;
 import com.hibernate.UserAddress;
-
-=======
->>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -18,10 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
 import jakarta.servlet.http.HttpSession;
-=======
->>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 
 /**
  * Servlet implementation class AddItem
@@ -63,11 +55,8 @@ public class AddItem extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String modelName = request.getParameter("model");
-<<<<<<< HEAD
 		String address = request.getParameter("address");
 		String eletype = request.getParameter("eletype");
-=======
->>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 		String brand = request.getParameter("brand");
 		String condition = request.getParameter("condition");
 		Double price = Double.parseDouble(request.getParameter("price"));
@@ -90,7 +79,6 @@ public class AddItem extends HttpServlet {
 		itemInfo.setDescription(description);
 		itemInfo.setImage(imageName);
 
-<<<<<<< HEAD
 		ElectronicsType electronicsType = new ElectronicsType();
 
 		electronicsType.setDeviceType(eletype);
@@ -107,16 +95,6 @@ public class AddItem extends HttpServlet {
 		dao.addItem(itemInfo, user, electronicsType, Address);
 
 		response.sendRedirect("index.jsp");
-=======
-		DAO dao = new DAO();
-		boolean itemAddded = dao.addItems(itemInfo);
-
-		if (itemAddded) {
-			response.sendRedirect("index.jsp");
-		} else {
-			response.sendRedirect("adderror.jsp");
-		}
->>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 
 	}
 
