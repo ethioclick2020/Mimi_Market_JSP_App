@@ -1,6 +1,7 @@
 package com.shop;
 
 import java.io.IOException;
+
 import com.hibernate.DAO;
 import com.hibernate.ElectronicsType;
 import com.hibernate.ItemInfo;
