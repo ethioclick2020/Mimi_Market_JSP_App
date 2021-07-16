@@ -13,6 +13,7 @@
 		style="color: #fff; width: 200px; margin-top: 5px; position: absolute; right: 20px;"
 		href="index.jsp"> Back to List</a>
 	<form class="logform" action="additem" method="post"
+<<<<<<< HEAD
 		style="margin-top: 20px; top: 0; height: 740px;">
 		<h3 align="center">Add Items</h3>
 		<div class="logdiv">
@@ -40,6 +41,13 @@
 			<div class="row mb-3 ">
 				<label for="inputEmail3" class="col-sm-2 col-form-label">Model
 					Name</label>
+=======
+		style="margin-top: 20px; top: 0; height: 630px;">
+		<h3 align="center">Add Items</h3>
+		<div class="logdiv">
+			<div class="row mb-3 ">
+				<label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="inputEmail3"
 						name="model">
@@ -53,6 +61,7 @@
 						<option value="Apple">Apple</option>
 						<option value="Huawei">Huawei</option>
 						<option value="Samsung">Samsung</option>
+<<<<<<< HEAD
 						<option value="HP">HP</option>
 						<option value="Toshiba">Toshiba</option>
 						<option value="MAC">MAC</option>
@@ -62,6 +71,8 @@
 						<option value="LG">LG</option>
 						<option value="Hitachi">Hitachi</option>
 						<option value="Other">Other</option>
+=======
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 					</select>
 				</div>
 			</div>

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <%@page import="com.hibernate.DAO"%>
 <%@page import="com.hibernate.ItemInfo"%>
+=======
+<%@page import="com.shop.DAO"%>
+<%@page import="com.shop.ItemInfo"%>
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="java.util.* , java.sql.*, java.text.*"%>
@@ -14,11 +19,19 @@
 </head>
 <body>
 	<%
+<<<<<<< HEAD
+=======
+	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
+
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 	DAO dao = new DAO();
 
 	HttpSession hs = request.getSession();
 	String name = (String) hs.getAttribute("user");
+<<<<<<< HEAD
 	//String name = "Jote";
+=======
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 	String upString = name.toUpperCase();
 	%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -36,6 +49,7 @@
 				<ul class="navbar-nav ">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="index.jsp">Home</a></li>
+<<<<<<< HEAD
 					<li class="nav-item typeula"><a class="nav-link" href="#">Electronics</a>
 						<ul class="typeul">
 							<li class="typeli"><a class="typea"
@@ -49,6 +63,12 @@
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="mylisting.jsp">My
 							Listing</a></li>
+=======
+					<li class="nav-item"><a class="nav-link" href="#">Features</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
+					</li>
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 					<li class="nav-item" style="margin-left: 60px;">
 						<h3 align="center" class="nav-link profile">
 							<b class="proa"><%=upString.charAt(0)%></b>
@@ -82,7 +102,10 @@
 		<div class="row gy-5">
 			<%
 			if (request.getParameter("search") != null) {
+<<<<<<< HEAD
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
+=======
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 				String search = request.getParameter("search");
 				String query = "SELECT * FROM itemdb.itemtb WHERE Model like '%" + search + "%' ORDER BY Id DESC ";
 				PreparedStatement preparedStatements = connection.prepareStatement(query);

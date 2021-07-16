@@ -2,9 +2,12 @@ package com.shop;
 
 import java.io.IOException;
 
+<<<<<<< HEAD
 import com.hibernate.Authentication;
 import com.hibernate.User;
 
+=======
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -50,11 +53,19 @@ public class UserSignup extends HttpServlet {
 		if (userName != "" && password != "") {
 
 			User user = new User();
+<<<<<<< HEAD
 			user.setFirstname(userName);
 			user.setPassword(password);
 
 			Authentication authentication = new Authentication();
 			authentication.SignUp(user);
+=======
+			user.setUserName(userName);
+			user.setPassword(password);
+
+			Authentication authentication = new Authentication();
+			authentication.signUp(user);
+>>>>>>> f27f8e6e6390405e79173531577a1dbed0a462c5
 
 			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute("user", userName);
