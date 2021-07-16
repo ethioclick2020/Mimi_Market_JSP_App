@@ -60,42 +60,47 @@
 			</div>
 		</div>
 	</nav>
-	String i = request.getParameter("id"); ElectronicsType itemInfos =
-	dao.onetomanyFetch(Integer.parseInt(i)); for (ItemInfo itemInfo :
-	itemInfos.getItemInfo()) { %>
-	<div class="col-6">
-		<div class="p-3 border bg-dark" style="margin: 10px;">
-			<div class="container overflow-hidden">
-				<div class="row gx-5">
-					<div class="col">
-						<div class="p-3 border bg-light">
-							<img style="width: 200px; height: 200px;" alt=""
-								src="./images/<%=itemInfo.getImage()%>" />
-							<h1><%=itemInfo.getElectronicsType().getDeviceType()%></h1>
-						</div>
-					</div>
-					<div class="col" style="margin-left: 10px;">
-						<div class="p-3 border bg-light" style="margin-top: 10px;">
-							<span>Posted Date : <%=itemInfo.getPostDate()%></span><br> <span>Model
-								: <%=itemInfo.getModelName()%></span><br> <span>Price :<%=itemInfo.getPrice()%></span>
-						</div>
-						<div class="row gy-5" style="margin-top: 5px;">
-							<a class="nav-link btn btn-primary"
-								style="margin-top: 10px; color: #fff;"
-								href="detail.jsp?id=<%=itemInfo.getId()%>" id="btn1">Details</a>
-							<a class="nav-link btn btn-secondary"
-								style="margin-top: 10px; color: #fff;"
-								href="view.jsp?id=<%=itemInfo.getId()%>" id="btn1">Edit</a>
+	<div class="container overflow-hidden" style="margin-top: 50px;">
+		<div class="row gy-5">
+			<%
+			String i = request.getParameter("id");
+			ElectronicsType itemInfos = dao.onetomanyFetch(Integer.parseInt(i));
+			for (ItemInfo itemInfo : itemInfos.getItemInfo()) {
+			%>
+			<div class="col-6">
+				<div class="p-3 border bg-dark" style="margin: 10px;">
+					<div class="container overflow-hidden">
+						<div class="row gx-5">
+							<div class="col">
+								<div class="p-3 border bg-light">
+									<img style="width: 200px; height: 200px;" alt=""
+										src="./images/<%=itemInfo.getImage()%>" />
+									<h1><%=itemInfo.getElectronicsType().getDeviceType()%></h1>
+								</div>
+							</div>
+							<div class="col" style="margin-left: 10px;">
+								<div class="p-3 border bg-light" style="margin-top: 10px;">
+									<span>Posted Date : <%=itemInfo.getPostDate()%></span><br>
+									<span>Model : <%=itemInfo.getModelName()%></span><br> <span>Price
+										:<%=itemInfo.getPrice()%></span>
+								</div>
+								<div class="row gy-5" style="margin-top: 5px;">
+									<a class="nav-link btn btn-primary"
+										style="margin-top: 10px; color: #fff;"
+										href="detail.jsp?id=<%=itemInfo.getId()%>" id="btn1">Details</a>
+									<a class="nav-link btn btn-secondary"
+										style="margin-top: 10px; color: #fff;"
+										href="view.jsp?id=<%=itemInfo.getId()%>" id="btn1">Edit</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<%
+			}
+			%>
 		</div>
-	</div>
-	<%
-	}
-	%>
-	</div>
 	</div>
 </body>
 </html>
