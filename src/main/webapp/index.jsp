@@ -15,7 +15,9 @@
 <body>
 	<%
 	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
+	
 	DAO dao = new DAO();
+	
 	HttpSession hs = request.getSession();
 	String name = (String) hs.getAttribute("user");
 	String upString = name.toUpperCase();
@@ -48,11 +50,6 @@
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="mylisting.jsp">My
 							Listing</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Features</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-					</li>
-
 					<li class="nav-item" style="margin-left: 60px;">
 						<h3 align="center" class="nav-link profile">
 							<b class="proa"><%=upString.charAt(0)%></b>

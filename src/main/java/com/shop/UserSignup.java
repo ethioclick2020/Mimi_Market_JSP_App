@@ -1,6 +1,7 @@
 package com.shop;
 
 import java.io.IOException;
+
 import com.hibernate.Authentication;
 import com.hibernate.User;
 import jakarta.servlet.ServletException;
@@ -51,11 +52,7 @@ public class UserSignup extends HttpServlet {
 
 			user.setFirstname(userName);
 			user.setPassword(password);
-
-
-			user.setFirstname(userName);
-			user.setPassword(password);
-
+			
 			Authentication authentication = new Authentication();
 			authentication.SignUp(user);
 

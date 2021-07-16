@@ -1,11 +1,7 @@
 package com.shop;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import com.hibernate.Authentication;
 import com.hibernate.User;
 import jakarta.servlet.ServletException;
@@ -56,7 +52,6 @@ public class UserSignin extends HttpServlet {
 		User user = new User();
 
 		user.setFirstname(userName);
-
 		user.setPassword(password);
 
 		Authentication authentication = new Authentication();
