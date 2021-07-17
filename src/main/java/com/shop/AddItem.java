@@ -2,6 +2,11 @@ package com.shop;
 
 import java.io.IOException;
 
+import com.hibernate.DAO;
+import com.hibernate.ElectronicsType;
+import com.hibernate.ItemInfo;
+import com.hibernate.User;
+import com.hibernate.UserAddress;
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -9,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class AddItem
@@ -50,6 +56,8 @@ public class AddItem extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String modelName = request.getParameter("model");
+		String address = request.getParameter("address");
+		String eletype = request.getParameter("eletype");
 		String brand = request.getParameter("brand");
 		String condition = request.getParameter("condition");
 		Double price = Double.parseDouble(request.getParameter("price"));
@@ -72,14 +80,22 @@ public class AddItem extends HttpServlet {
 		itemInfo.setDescription(description);
 		itemInfo.setImage(imageName);
 
-		DAO dao = new DAO();
-		boolean itemAddded = dao.addItems(itemInfo);
+		ElectronicsType electronicsType = new ElectronicsType();
 
-		if (itemAddded) {
-			response.sendRedirect("index.jsp");
-		} else {
-			response.sendRedirect("adderror.jsp");
-		}
+		electronicsType.setDeviceType(eletype);
+
+		UserAddress Address = new UserAddress();
+		Address.setAddress(address);
+
+		HttpSession httpSession = request.getSession();
+		String name = (String) httpSession.getAttribute("user");
+		User user = new User();
+		user.setFirstname(name);
+
+		DAO dao = new DAO();
+		dao.addItem(itemInfo, user, electronicsType, Address);
+
+		response.sendRedirect("index.jsp");
 
 	}
 

@@ -1,12 +1,9 @@
 package com.shop;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
+import com.hibernate.Authentication;
+import com.hibernate.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -53,15 +50,17 @@ public class UserSignin extends HttpServlet {
 		String password = request.getParameter("password");
 
 		User user = new User();
-		user.setUserName(userName);
+
+		user.setFirstname(userName);
 		user.setPassword(password);
 
 		Authentication authentication = new Authentication();
 
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("user", userName);
+		httpSession.setAttribute("pass", password);
 
-		if (authentication.signIn(user) == true) {
+		if (authentication.SignIn(userName, password)) {
 			response.sendRedirect("index.jsp");
 		} else {
 			response.sendRedirect("error.jsp");

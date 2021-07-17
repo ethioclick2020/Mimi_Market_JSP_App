@@ -1,7 +1,8 @@
+<%@page import="com.hibernate.ElectronicsType"%>
 <%@page import="com.hibernate.DAO"%>
 <%@page import="com.hibernate.Authentication"%>
-<%@page import="com.hibernate.User"%>
 <%@page import="com.hibernate.ItemInfo"%>
+<%@page import="com.hibernate.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="java.util.* , java.sql.*, java.text.*"%>
@@ -16,8 +17,6 @@
 </head>
 <body>
 	<%
-	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
-
 	DAO dao = new DAO();
 	Authentication authentication = new Authentication();
 	HttpSession hs = request.getSession();
@@ -65,92 +64,12 @@
 			</div>
 		</div>
 	</nav>
-
-	<div style="display: flex;">
-		<form action="" method="post">
-			<div class="input-group"
-				style="margin-top: 15px; margin-left: 600px;">
-				<div class="form-outline">
-					<input type="search" id="form1" placeholder="Search" name="search"
-						class="form-control" />
-				</div>
-				<Button class="btn btn-outline-success" name="search" type="submit">Search</Button>
-			</div>
-		</form>
-		<a class="nav-link btn btn-secondary"
-			style="color: #fff; width: 200px; margin-top: 65px; position: absolute; right: 125px;"
-			href="additem.jsp">+ Add Items</a>
-	</div>
-
 	<div class="container overflow-hidden" style="margin-top: 50px;">
 		<div class="row gy-5">
 			<%
-			if (request.getParameter("search") != null) {
-				String search = request.getParameter("search");
-				String query = "SELECT * FROM itemdb.itemtb WHERE Model like '%" + search + "%' ORDER BY Id DESC ";
-				PreparedStatement preparedStatements = connection.prepareStatement(query);
-				ResultSet resultsets = preparedStatements.executeQuery();
-
-				if (resultsets.next() == false) {
-			%>
-			<div class="col-6">
-				<h2>No Match Found!</h2>
-			</div>
-			<%
-			resultsets.close();
-			}
-
-			else {
-			String q = "SELECT * FROM itemdb.itemtb WHERE Model like '%" + search + "%' ORDER BY Id DESC ";
-			PreparedStatement ps = connection.prepareStatement(q);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				String id = rs.getString("Id");
-				String model = rs.getString(2);
-				String brand = rs.getString(3);
-				String condition = rs.getString(4);
-				String price = rs.getString(5);
-				String quantity = rs.getString(6);
-				String date = rs.getString(7);
-				String image = rs.getString(9);
-			%>
-
-			<div class="col-6">
-				<div class="p-3 border bg-dark" style="margin: 10px;">
-					<div class="container overflow-hidden">
-						<div class="row gx-5">
-							<div class="col">
-								<div class="p-3 border bg-light">
-									<img style="width: 200px; height: 200px;" alt=""
-										src="./images/<%=image%>" />
-								</div>
-							</div>
-							<div class="col" style="margin-left: 10px;">
-								<div class="p-3 border bg-light" style="margin-top: 10px;">
-									<span>Posted Date : <%=date%></span><br> <span>Model
-										: <%=model%></span><br> <span>Price :<%=price%></span>
-								</div>
-								<div class="row gy-5" style="margin-top: 5px;">
-									<a class="nav-link btn btn-primary"
-										style="margin-top: 10px; color: #fff;"
-										href="detail.jsp?id=<%=id%>" id="btn1">Details</a> <a
-										class="nav-link btn btn-secondary"
-										style="margin-top: 10px; color: #fff;"
-										href="view.jsp?id=<%=id%>" id="btn1">Edit</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<%
-			}
-			}
-			} else {
-
-			List<ItemInfo> itemsInfo = dao.displayItems();
-			for (ItemInfo itemInfo : itemsInfo) {
+			String i = request.getParameter("id");
+			ElectronicsType itemInfos = dao.onetomanyFetch(Integer.parseInt(i));
+			for (ItemInfo itemInfo : itemInfos.getItemInfo()) {
 			%>
 			<div class="col-6">
 				<div class="p-3 border bg-dark" style="margin: 10px;">
@@ -160,6 +79,7 @@
 								<div class="p-3 border bg-light">
 									<img style="width: 200px; height: 200px;" alt=""
 										src="./images/<%=itemInfo.getImage()%>" />
+									<h1><%=itemInfo.getElectronicsType().getDeviceType()%></h1>
 								</div>
 							</div>
 							<div class="col" style="margin-left: 10px;">
@@ -182,7 +102,6 @@
 				</div>
 			</div>
 			<%
-			}
 			}
 			%>
 		</div>
