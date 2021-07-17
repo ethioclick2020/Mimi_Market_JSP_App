@@ -1,4 +1,6 @@
 <%@page import="com.hibernate.DAO"%>
+<%@page import="com.hibernate.Authentication"%>
+<%@page import="com.hibernate.User"%>
 <%@page import="com.hibernate.ItemInfo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
@@ -15,12 +17,14 @@
 <body>
 	<%
 	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/itemdb", "root", "3465");
-	
+
 	DAO dao = new DAO();
-	
+	Authentication authentication = new Authentication();
 	HttpSession hs = request.getSession();
 	String name = (String) hs.getAttribute("user");
-	String upString = name.toUpperCase();
+	String pass = (String) hs.getAttribute("pass");
+	User user = authentication.userInfo(name, pass);
+	String upString = user.getFirstname().toUpperCase();
 	%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
@@ -74,9 +78,8 @@
 			</div>
 		</form>
 		<a class="nav-link btn btn-secondary"
-			style="color: #fff; width: 200px; margin-top: 5px; position: absolute; right: 20px;"
+			style="color: #fff; width: 200px; margin-top: 65px; position: absolute; right: 125px;"
 			href="additem.jsp">+ Add Items</a>
-
 	</div>
 
 	<div class="container overflow-hidden" style="margin-top: 50px;">

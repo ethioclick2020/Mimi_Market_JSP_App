@@ -58,6 +58,7 @@ public class UserSignin extends HttpServlet {
 
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("user", userName);
+		httpSession.setAttribute("pass", password);
 
 		if (authentication.SignIn(userName, password)) {
 			response.sendRedirect("index.jsp");

@@ -16,6 +16,7 @@
 		<mapping class="com.hibernate.ItemInfo" />
 		<mapping class="com.hibernate.ElectronicsType" />
 		<mapping class="com.hibernate.UserAddress" />
+		<mapping class="com.hibernate.DeviceBrand" />
 
 
 	</session-factory>

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ElectronicsType {
@@ -24,6 +25,7 @@ public class ElectronicsType {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "electronicsType", fetch = FetchType.EAGER)
 	List<ItemInfo> itemInfo;
+
 
 	public List<ItemInfo> getItemInfo() {
 		return itemInfo;

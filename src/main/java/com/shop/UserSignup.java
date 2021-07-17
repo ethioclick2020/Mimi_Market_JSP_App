@@ -52,12 +52,13 @@ public class UserSignup extends HttpServlet {
 
 			user.setFirstname(userName);
 			user.setPassword(password);
-			
+
 			Authentication authentication = new Authentication();
 			authentication.SignUp(user);
 
 			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute("user", userName);
+			httpSession.setAttribute("pass", password);
 
 			response.sendRedirect("index.jsp");
 		} else {

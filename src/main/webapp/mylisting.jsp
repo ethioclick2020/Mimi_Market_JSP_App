@@ -1,4 +1,5 @@
 <%@page import="com.hibernate.DAO"%>
+<%@page import="com.hibernate.Authentication"%>
 <%@page import="com.hibernate.ItemInfo"%>
 <%@page import="com.hibernate.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -16,10 +17,12 @@
 <body>
 	<%
 	DAO dao = new DAO();
-
+	Authentication authentication = new Authentication();
 	HttpSession hs = request.getSession();
 	String name = (String) hs.getAttribute("user");
-	String upString = name.toUpperCase();
+	String pass = (String) hs.getAttribute("pass");
+	User user = authentication.userInfo(name, pass);
+	String upString = user.getFirstname().toUpperCase();
 	%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
@@ -63,8 +66,6 @@
 	<div class="container overflow-hidden" style="margin-top: 50px;">
 		<div class="row gy-5">
 			<%
-			User user = new User();
-			user.setFirstname(name);
 			User userAddress = dao.onetooneFetch(user);
 			User itemInfos = dao.manytomanyFetch(user);
 			for (ItemInfo itemInfo : itemInfos.getItemInfos()) {

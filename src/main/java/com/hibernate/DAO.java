@@ -38,8 +38,6 @@ public class DAO {
 					.createQuery("From UserAddress  Where Address = :userAddress")
 					.setParameter("userAddress", address.getAddress()).uniqueResult();
 
-			System.out.println(electronicsType.getDeviceType() + " " + electronicsType.getId());
-
 			// One to One
 			users.setAddress(userAddress);
 
@@ -88,8 +86,8 @@ public class DAO {
 		Session session = configuration.buildSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 
-		User users = (User) session.createQuery("From User  Where firstname = :username")
-				.setParameter("username", user.getFirstname()).uniqueResult();
+		User users = (User) session.createQuery("From User  Where id = :username")
+				.setParameter("username", user.getId()).uniqueResult();
 
 		transaction.commit();
 		session.close();
@@ -114,6 +112,38 @@ public class DAO {
 		return electronicsTypes;
 	}
 
+	public List<ElectronicsType> deviceTypeFetch() {
+		// TODO Auto-generated method stub
+		Configuration configuration = new Configuration();
+		configuration.configure("hibernet.cfg.xml");
+
+		Session session = configuration.buildSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+
+		List<ElectronicsType> electronicsTypes = session.createQuery("From ElectronicsType").list();
+
+		transaction.commit();
+		session.close();
+
+		return electronicsTypes;
+	}
+
+	public List<DeviceBrand> deviceBrandFetch() {
+		// TODO Auto-generated method stub
+		Configuration configuration = new Configuration();
+		configuration.configure("hibernet.cfg.xml");
+
+		Session session = configuration.buildSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+
+		List<DeviceBrand> deviceBrands = session.createQuery("From DeviceBrand").list();
+
+		transaction.commit();
+		session.close();
+
+		return deviceBrands;
+	}
+
 	public User manytomanyFetch(User user) {
 		// TODO Auto-generated method stub
 		Configuration configuration = new Configuration();
@@ -122,8 +152,8 @@ public class DAO {
 		Session session = configuration.buildSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 
-		User users = (User) session.createQuery("From User Where firstname = :username")
-				.setParameter("username", user.getFirstname()).uniqueResult();
+		User users = (User) session.createQuery("From User Where id = :username").setParameter("username", user.getId())
+				.uniqueResult();
 		transaction.commit();
 		session.close();
 
