@@ -4,6 +4,9 @@ JspItemShoping
 
 Shopping management system web app that allow us to add new Items, show list of items, when one selected from the list it  display the detail and can be edited. Using JSP, Servlet and JDBC for DB.
 <hr>
+For the demo you can use the database file in the Project Document Folder
+
+<hr>
 <h1>Demo Ui</h1>
 
 Sign In Page
