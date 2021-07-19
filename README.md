@@ -6,6 +6,8 @@ Shopping management system web app that allow us to add new Items, show list of 
 <hr>
 For the demo you can use the database file in the Project Document Folder
 
+https://github.com/ethioclicks/Mimi_Market_JSP_App/tree/main/ProjectDocument
+
 <hr>
 <h1>Demo Ui</h1>
 
